@@ -14,5 +14,18 @@ const getGame = async (id) => {
     return game;
 }
 
+const addGame = async (gameToAdd) => {
+    return await Games.create(gameToAdd);
+}
 
-module.exports = { getAllGames, getGame };
+const updateGame = async (id, modif) => {
+    return await Games.findByIdAndUpdate(
+        id,
+        modif,
+        { runValidators: true, new: true }
+    );
+
+}
+
+
+module.exports = { getAllGames, getGame, addGame, updateGame };
