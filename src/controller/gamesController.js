@@ -3,9 +3,10 @@ const router = express.Router();
 const gamesService = require('../service/gamesService');
 router.get('/', async (req, res) => {
     try {
-        const games = await gamesService.getAllGames();
-        if (!games) res.status(403).json({message : 'Aucun jeux trouvé'});
-        res.status(200).json({games: games , count : games.length});
+        const page = parseInt(req.query.page) || 1;
+        const games = await gamesService.getAllGames(page);
+        if (!games) return res.status(403).json({message : 'Aucun jeux trouvé'});
+        res.status(200).json({page : page , count : games.length , games: games});
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
