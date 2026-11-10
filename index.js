@@ -13,6 +13,14 @@ app.use(cors());
 
 app.use('/api/games', gamesController);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toLocaleDateString(),
+  });
+});
+
 connectDB().then(()=>{app.listen(port, () => {
     console.log(`http://localhost:${port}`);
 })});
