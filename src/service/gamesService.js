@@ -27,5 +27,9 @@ const updateGame = async (id, modif) => {
 
 }
 
+const deleteGame = async (id) =>{
+    return await Games.findByIdAndDelete(id);
+}
 
-module.exports = { getAllGames, getGame, addGame, updateGame };
+
+module.exports = { getAllGames, getGame, addGame, updateGame, deleteGame };

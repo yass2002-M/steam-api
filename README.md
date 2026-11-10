@@ -43,6 +43,7 @@ La ressource des jeux est préfixée par `/api/games`. Les requêtes avec un cor
 | `GET` | `/api/games/:id` | Récupère un jeu par son identifiant numérique. |
 | `POST` | `/api/games` | Ajoute un jeu. |
 | `PATCH` | `/api/games/:id` | Modifie les champs fournis pour un jeu. |
+| `DELETE` | `/api/games/:id` | Supprime un jeu. |
 
 ### Vérification du serveur
 

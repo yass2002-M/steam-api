@@ -43,7 +43,19 @@ router.patch('/:id', async (req, res) => {
         const modif = req.body;
         if (!id) return res.status(400).json({ message: " il manque l'id " });
         const game = await gamesService.updateGame(id, modif);
-        res.status(204).json({message : 'votre jeux a été mis a jour' });
+        res.status(204).json({ message: 'votre jeux a été mis a jour' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const{id}= req.params;
+        if(!id) return res.status(400).json({message:"il manque l'id"});
+        const game = await gamesService.deleteGame(id);
+        if(!game) return res.status(404).json({message:"le jeux est introuvable"});
+        res.status(204).json({message:"le jeux a été supprimé"});
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
